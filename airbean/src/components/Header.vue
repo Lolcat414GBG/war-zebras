@@ -48,7 +48,7 @@ header {
 }
 .menu-icon {
     background: #fff;
-    padding: 1rem;
+    padding: 1.5rem;
     border-radius: 2rem;
     display: flex;
     text-align: center;
@@ -56,6 +56,7 @@ header {
     justify-content: center;
     width: 1rem;
     height: 1rem;
+    border: none;
 }
 .cart-icon {
     background-color: #2F2926;
