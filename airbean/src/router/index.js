@@ -1,22 +1,17 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
 import Landing from '../views/Landing.vue'
 import Menu from '../views/Menu.vue'
 import Cart from '../views/Cart.vue'
 import Status from '../views/Status.vue'
 import Profile from '../views/Profile.vue'
+import About from '../views/About.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'Home',
-    component: Home
-  },
-  {
-    path: '/landing',
     name: 'Landing',
     component: Landing
   },
@@ -34,10 +29,16 @@ const routes = [
     path: '/status',
     name: 'Status',
     component: Status
-  },{
+  },
+  {
     path: '/profile',
     name: 'Profile',
     component: Profile
+  },
+  {
+    path: '/about',
+    name: 'About',
+    component: About
   }
 ]
 

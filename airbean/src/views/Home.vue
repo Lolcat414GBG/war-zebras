@@ -1,18 +1,36 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Header></Header>
+    <img alt="Vue logo" src="../assets/add.svg">
+    <img alt="Vue logo" src="../assets/airbean-landing.svg">
+    <img alt="Vue logo" src="../assets/arrow-down.svg">
+    <img alt="Vue logo" src="../assets/arrow-up.svg">
+    <img alt="Vue logo" src="../assets/bag.svg">
+    <img alt="Vue logo" src="../assets/close.svg">
+    <img alt="Vue logo" src="../assets/drone.svg">
+    <img alt="Vue logo" src="../assets/eva-cortado.jpg">
+    <img alt="Vue logo" src="../assets/graphics-footer.svg">
+    <img alt="Vue logo" src="../assets/graphics-header.svg">
+    <img alt="Vue logo" src="../assets/intro-graphic-left.svg">
+    <img alt="Vue logo" src="../assets/intro-graphic-right.svg">
+    <img alt="Vue logo" src="../assets/loader.png">
+    <img alt="Vue logo" src="../assets/navicon.svg">
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import Header from '@/components/Header.vue'
 
 export default {
   name: 'Home',
   components: {
-    HelloWorld
+    Header
   }
 }
 </script>
+<style>
+.home {
+  background-color: #F3E4E1;
+}
+</style>
