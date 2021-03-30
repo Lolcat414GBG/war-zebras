@@ -3,7 +3,7 @@
         <header>
             <button v-on:click="showNavigation" class="menu-icon"><img src="../assets/navicon.svg"></button>
             <div class="cart-icon">
-                <div class="counter"><p>0</p></div>
+                <div class="counter"><p>{{ cart }}</p></div>
                 <img src="../assets/bag.svg">
             </div>
         </header>
@@ -25,6 +25,9 @@ export default {
     computed: {
         showNav(){
             return this.$store.state.showNav
+        },
+        cart(){
+            return this.$store.state.cart.length
         }
     },
     methods: {

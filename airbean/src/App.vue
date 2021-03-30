@@ -31,6 +31,8 @@
   display: flex;
   flex-direction: column;
   margin: 0 auto;
+  background-color: #f3e4e1;
+  height: 100vh;
 }
 #nav {
   padding: 30px;

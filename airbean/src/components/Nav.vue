@@ -31,7 +31,7 @@ header {
     padding: 1rem;
 }
 main {
-    margin-top: 8rem;
+    margin-top: 5rem;
 }
 .close-icon {
     width: 3rem;
@@ -51,6 +51,7 @@ main {
     color: #fff;
     font-size: 2em;
     font-weight: 700;
+    z-index: 10;
     /*display: flex;
     flex-direction: column;
     justify-content: center;

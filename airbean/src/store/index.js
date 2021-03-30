@@ -35,8 +35,6 @@ export default new Vuex.Store({
       console.log(data)
     },
     showOrHideNav(ctx, bol) {
-      //      console.log(ctx)
-      //      console.log('in index.js', bol)
       ctx.commit('changeNave', bol)
     },
     addCoffeeToCart(ctx, coffee) {

@@ -1,6 +1,6 @@
 <template>
   <main>
-    <Header></Header>
+    <Header />
     <section class="container">
     <div class="meny_header">
       <h1>Meny</h1>
@@ -60,6 +60,8 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+  outline: none;
+  border: none;
 }
 .add_coffee_icon {
   background-image: url("../assets/add.svg");
@@ -78,11 +80,6 @@ li {
   gap: 16px;
   margin-top: 18px;
 }
-
-body {
-  background-color: #f3e4e1;
-  text-align: left;
-}
 .coffee_price {
   font-weight: 700;
   font-size: 23px;
@@ -96,10 +93,7 @@ body {
   font-size: 12px;
 }
 .container {
-  padding-left: 32px;
-  padding-right: 32px;
-  margin-left: auto;
-  margin-right: auto;
+  padding: 2rem;
 }
 .meny_header {
   text-align: center;
