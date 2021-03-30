@@ -1,6 +1,7 @@
 <template>
-  <main class="container">
+  <main>
     <Header></Header>
+    <section class="container">
     <div class="meny_header">
       <h1>Meny</h1>
     </div>
@@ -16,6 +17,7 @@
         <span class="coffee_price"> {{ coffee.price }} kr</span>
       </li>
     </ul>
+    </section>
     <AppFooter />
   </main>
 </template>
