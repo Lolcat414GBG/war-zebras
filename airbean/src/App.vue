@@ -25,10 +25,14 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  min-width: 375px;
+  max-width: 375px;
   width: 375px;
   display: flex;
   flex-direction: column;
   margin: 0 auto;
+  background-color: #f3e4e1;
+  height: 100vh;
 }
 #nav {
   padding: 30px;

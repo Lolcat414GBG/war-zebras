@@ -1,7 +1,7 @@
 <template>
-  <div class="home">
+  <section class="status">
     <Header></Header>
-    <img alt="Vue logo" src="../assets/add.svg">
+    <!--<img alt="Vue logo" src="../assets/add.svg">
     <img alt="Vue logo" src="../assets/airbean-landing.svg">
     <img alt="Vue logo" src="../assets/arrow-down.svg">
     <img alt="Vue logo" src="../assets/arrow-up.svg">
@@ -14,8 +14,8 @@
     <img alt="Vue logo" src="../assets/intro-graphic-left.svg">
     <img alt="Vue logo" src="../assets/intro-graphic-right.svg">
     <img alt="Vue logo" src="../assets/loader.png">
-    <img alt="Vue logo" src="../assets/navicon.svg">
-  </div>
+    <img alt="Vue logo" src="../assets/navicon.svg">-->
+  </section>
 </template>
 
 <script>
@@ -29,8 +29,9 @@ export default {
   }
 }
 </script>
-<style>
-.home {
+<style scoped>
+.status {
   background-color: #F3E4E1;
+  height: 100vh;
 }
 </style>

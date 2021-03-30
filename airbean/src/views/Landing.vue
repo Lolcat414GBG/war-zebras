@@ -1,20 +1,15 @@
 <template>
+
 <div class="landing">
   
-  <leafLeft class="landingLeaf__left">
-    <img v-bind:src= "leafleft.leafleft" alt="leaf">
-  </leafLeft>
+      <img class="landingLeaf__left" v-bind:src= "leafleft.leafleft" alt="leaf">
 
-  <airbeanLanding class="logo">
-      <router-link to="/menu">
+      <router-link class="logo" to="/menu">
         <img v-bind:src= "landingpage.landingpage" alt="landingpage">
       </router-link>
-  </airbeanLanding>
+ 
 
-  
-  <leafRight class="landingLeaf__right">
-    <img v-bind:src= "leafright.leafright" alt="leaf">
-  </leafRight>
+  <img class="landingLeaf__right" v-bind:src= "leafright.leafright" alt="leaf">
 
   </div>
 </template>

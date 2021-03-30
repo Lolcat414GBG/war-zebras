@@ -1,13 +1,13 @@
 <template>
     <section>
         <header>
-            <button v-on:click="showNav" class="menu-icon"><img src="../assets/navicon.svg"></button>
+            <button v-on:click="showNavigation" class="menu-icon"><img src="../assets/navicon.svg"></button>
             <div class="cart-icon">
-                <div class="counter"><p>0</p></div>
+                <div class="counter"><p>{{ cart }}</p></div>
                 <img src="../assets/bag.svg">
             </div>
         </header>
-        <Nav v-if="show"></Nav>
+        <Nav v-if="showNav"></Nav>
     </section>
 </template>
 
@@ -22,21 +22,23 @@ export default {
     props: {
         showCartIcon: Boolean
     },
-    data() {
-        return {
-            show: false
+    computed: {
+        showNav(){
+            return this.$store.state.showNav
+        },
+        cart(){
+            return this.$store.state.cart.length
         }
-
     },
     methods: {
-        showNav: function() {
-            console.log('hej')
+        showNavigation: function() {
+            this.$store.dispatch('showOrHideNav', true);
         }
     }
 }
 </script>
 
-<style>
+<style scoped>
 header {
     background-image: url(/img/graphics-header.ed1c9c2c.svg);
     height: 6rem;
@@ -57,6 +59,8 @@ header {
     width: 1rem;
     height: 1rem;
     border: none;
+    outline: none;
+    cursor: pointer;
 }
 .cart-icon {
     background-color: #2F2926;
