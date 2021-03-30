@@ -1,4 +1,5 @@
 <template>
+Sofia
 <div class="landing">
   
   <leafLeft class="landingLeaf__left">
@@ -57,4 +58,17 @@ export default {
 height: 100%;
 width: 30%;
 }
+
+  <p>Landing</p>
+</template>
+
+<script>
+export default {
+
+}
+</script>
+
+<style>
+
+ main
 </style>

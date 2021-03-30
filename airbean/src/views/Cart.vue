@@ -1,5 +1,5 @@
 <template>
-  <p>About</p>
+  <p>Cart</p>
 </template>
 
 <script>
