@@ -25,8 +25,8 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  min-width: 375px;
-  max-width: 375px;
+  min-height: 667px;
+  max-height: auto;
   width: 375px;
   display: flex;
   flex-direction: column;
