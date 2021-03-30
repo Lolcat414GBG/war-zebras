@@ -14,6 +14,11 @@
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=PT+Serif:wght@400;700&display=swap');
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 #app {
   font-family: 'PT Serif', serif;;
   -webkit-font-smoothing: antialiased;
