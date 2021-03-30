@@ -1,14 +1,14 @@
 <template>
   <section class="nav-overlay">
       <header>
-
+          <button v-on:click="closeNav" class="close-icon"><img src="../assets/close.svg"></button>
       </header>
       <main>
           <ul>
-              <li><router-link to="/menu">Meny</router-link></li>
-              <li><router-link to="/about">Vårt kaffe</router-link></li>
-              <li><router-link to="/profile">Min profil</router-link></li>
-              <li><router-link to="/status">Orderstatus</router-link></li>
+              <li v-on:click="closeNav"><router-link to="/menu">Meny</router-link></li>
+              <li v-on:click="closeNav"><router-link to="/about">Vårt kaffe</router-link></li>
+              <li v-on:click="closeNav"><router-link to="/profile">Min profil</router-link></li>
+              <li v-on:click="closeNav"><router-link to="/status">Orderstatus</router-link></li>
           </ul>
       </main>
   </section>
@@ -16,11 +16,32 @@
 
 <script>
 export default {
-
+    name: 'Nav',
+    methods: {
+        closeNav: function() {
+            this.$store.dispatch('showOrHideNav', false);
+        }
+    }
 }
 </script>
 
 <style scoped>
+header {
+    text-align: left;
+    padding: 1rem;
+}
+main {
+    margin-top: 8rem;
+}
+.close-icon {
+    width: 3rem;
+    height: 3rem;
+    padding: 0.8rem;
+    border-radius: 3rem;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
 .nav-overlay {
     background-color: #2F2926;
     height: 100vh;
@@ -30,10 +51,10 @@ export default {
     color: #fff;
     font-size: 2em;
     font-weight: 700;
-    display: flex;
+    /*display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: center;*/
 }
 .nav-overlay a, .nav-overlay a:active {
     color: #fff;
@@ -42,12 +63,22 @@ export default {
 .nav-overlay ul {
     list-style-type: none;
     padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 .nav-overlay ul li {
-    border-bottom: 1px solid red;
+    border-bottom: 1px solid #2F2926;
+}
+.nav-overlay ul li:last-child {
+    border-bottom: none;
 }
 .nav-overlay ul li {
-  border-image: linear-gradient(to right, red 20%, green 20%, green 40%, blue 40%, blue 60%, maroon 60%, maroon 80%, chocolate 80%); /* gradient with required colors */
-  border-image-slice: 1;
+    border-image: linear-gradient(to right,#2F2926 20%, #2F2926 20%, #2F2926 40%, #665953 40%, #665953 60%, #2F2926 60%, #2F2926 80%, #2F2926 80%);
+    border-image-slice: 1;
+    padding: 1rem;
+    width: 60%;
+    justify-content: center;
 }
 </style>
