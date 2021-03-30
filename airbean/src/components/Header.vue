@@ -30,13 +30,13 @@ export default {
     },
     methods: {
         showNav: function() {
-            console.log('hej')
+            this.show = true;
         }
     }
 }
 </script>
 
-<style>
+<style scoped>
 header {
     background-image: url(/img/graphics-header.ed1c9c2c.svg);
     height: 6rem;
