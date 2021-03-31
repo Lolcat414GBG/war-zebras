@@ -1,6 +1,8 @@
 <template>
   <main>
+    <Cart v-show="showCart" />
     <Header />
+    <CartButton @click.native="showCart = !showCart" />
     <section class="container">
     <div class="meny_header">
       <h1>Meny</h1>
@@ -25,12 +27,21 @@
 <script>
 import AppFooter from "../components/AppFooter.vue";
 import Header from "../components/Header.vue";
+import CartButton from "../components/CartButton.vue";
+import Cart from "../components/Cart.vue"
 
 export default {
   name: "CoffeMenuComponent",
   components: {
     AppFooter,
+    CartButton,
+    Cart,
     Header
+  },
+  data() {
+    return {
+      showCart: false
+    }
   },
   created() {
     this.fetchMenuFromApi();
@@ -46,12 +57,13 @@ export default {
     },
     addCoffee(coffee) {
       this.$store.dispatch("addCoffeeToCart", coffee);
-    },
+    }
   },
 };
 </script>
 
-<style >
+<style>
+
 .add_coffee {
   width: 32px;
   height: 32px;
@@ -93,7 +105,7 @@ li {
   font-size: 12px;
 }
 .container {
-  padding: 2rem;
+  padding: 1rem 2rem;
 }
 .meny_header {
   text-align: center;
