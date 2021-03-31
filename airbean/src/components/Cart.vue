@@ -26,7 +26,7 @@
                 </div>
                 <p class="moms">inkl moms + drönarleverans</p>
             </div>
-            <button v-show="cart.length != 0" class="order-btn" @click="setOrder"><h3>Take my money!</h3></button>
+            <button v-show="cart.length > 0" class="order-btn" @click="setOrder"><h3>Take my money!</h3></button>
         </div>
         <section class="cart-overlay"></section>
     </section>
@@ -67,7 +67,6 @@ export default {
             this.$store.dispatch("addCoffeeToCart", coffee);
         },
         decrease(coffee) {
-            console.log('decrease: ', coffee)
             this.$store.dispatch("removeCoffeeFromCart", coffee);
         },
         updateTotal() { //update total cost for this order
