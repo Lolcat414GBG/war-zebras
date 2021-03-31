@@ -46,17 +46,15 @@ export default {
             return this.$store.state.cart
         },
         copyCart() {
-            //return this.cart.map(item => item.id);
-            return this.$store.state.copyCart
+            return this.cart.map(item => item.id);
         },
         noDuplicatesCart() {
-            //return [ ...new Set(this.cart)];
-            return this.$store.state.noDuplicatesCart
+            return [ ...new Set(this.cart)];
         }
     },
     created() {
         console.log('created');
-        //this.setCart();
+        this.setCart();
     },
     methods: {
         increase: function(coffee) {

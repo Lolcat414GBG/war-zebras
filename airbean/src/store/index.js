@@ -9,10 +9,7 @@ export default new Vuex.Store({
     state: {
         menu: [],
         showNav: false,
-        cart: [],
-        copyCart: [],
-        noDuplicatesCart: [],
-        IDs: {}
+        cart: []
     },
     mutations: {
         setMenu(state, menu) {
@@ -23,14 +20,6 @@ export default new Vuex.Store({
         },
         setCoffeeToCart(state, coffee) {
             state.cart.push(coffee)
-        },
-        copyCart(state) {
-            state.copyCart = state.cart.map(item => item.id);
-            console.log('copyCart', state.copyCart);
-        },
-        noDuplicatesCart(state) {
-            state.noDuplicatesCart = [...new Set(state.copyCart)];
-            console.log('noduplicates', state.noDuplicatesCart);
         }
     },
     actions: {
@@ -50,8 +39,6 @@ export default new Vuex.Store({
         },
         addCoffeeToCart(ctx, coffee) {
             ctx.commit('setCoffeeToCart', coffee)
-            ctx.commit('copyCart')
-            ctx.commit('noDuplicatesCart')
         }
     },
     getters: {
