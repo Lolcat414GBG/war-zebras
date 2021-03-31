@@ -51,7 +51,7 @@ main {
     color: #fff;
     font-size: 2em;
     font-weight: 700;
-    z-index: 10;
+    z-index: 1000;
 }
 .nav-overlay a, .nav-overlay a:active {
     color: #fff;
