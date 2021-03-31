@@ -23,8 +23,8 @@ export default new Vuex.Store({
     setCoffeeToCart(state, coffee) {
       state.cart.push(coffee)
     },
-    removeCoffeFromCart(state, coffee) {
-        state.cart.splice(coffee, 1)
+    removeCoffeFromCart(state, coffee) { //remove the first item in cart that matches the coffee to delete
+        state.cart.indexOf(coffee) > -1 ? state.cart.splice(state.cart.indexOf(coffee), 1) : false
     },
     clearCart(state) {
       state.cart = []
@@ -43,7 +43,7 @@ export default new Vuex.Store({
       });
       const data = await response.json();
       ctx.commit('setMenu', data.menu)
-      console.log(data)
+      //console.log(data)
     },
     async purchaseCoffee(ctx) {
       const response = await fetch(url, {

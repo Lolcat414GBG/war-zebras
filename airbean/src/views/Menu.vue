@@ -45,8 +45,7 @@ export default {
     }
   },
   watch: {
-    newCount(newerCount, oldCount) {
-      console.log('testar i menu' + newerCount + ' old count ' + oldCount)
+    newCount() { //rerender cart component through the componentKey if the length of the cart changes
       this.forceRerender();
     }
   },
@@ -58,7 +57,10 @@ export default {
       return this.$store.getters.getMenu;
     },
     newCount() {
-            return this.$store.state.cart.length
+      return this.$store.state.cart.length
+    },
+    cart() {
+      return this.$store.state.cart
     }
   },
   methods: {
@@ -67,10 +69,8 @@ export default {
     },
     addCoffee(coffee) {
       this.$store.dispatch("addCoffeeToCart", coffee);
-      this.forceRerender();
     },
     forceRerender() {
-      console.log('force', this.componentKey)
       this.componentKey += 1;
     }
   }

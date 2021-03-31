@@ -18,7 +18,7 @@
                     </div>
                 </div>
             </article>
-            <div>
+            <div class="total-container">
                 <div class="total">
                     <h2>Total</h2>
                     <div class="dot"></div>
@@ -26,7 +26,7 @@
                 </div>
                 <p class="moms">inkl moms + drönarleverans</p>
             </div>
-            <button class="order-btn" @click="setOrder"><h3>Take my money!</h3></button>
+            <button v-if="cart.length != 0" class="order-btn" @click="setOrder"><h3>Take my money!</h3></button>
         </div>
         <section class="cart-overlay"></section>
     </section>
@@ -37,29 +37,28 @@ export default {
     name: 'Cart',
     data() {
         return {
-            count: 1,
             total: 0,
             id: Number,
-            IDs: {},
+            IDs: {} //this is used to collect number of coffees that are duplicates
         }
     },
     computed: {
         cart() {
             return this.$store.state.cart
         },
-        copyCart() {
+        copyCart() { //this is used to be able to count the number of coffees that are duplicates
             return this.cart.map(item => item.id);
         },
-        noDuplicatesCart() {
+        noDuplicatesCart() { //this is used to extract and loop through the coffee variants
             return [ ...new Set(this.cart)];
         }
     },
     created() {
-        this.setCart();
+        this.setCart(); //initiate the cart
     },
     methods: {
         setCart(){
-            for(let i = 0; i < this.copyCart.length; i++) {
+            for(let i = 0; i < this.copyCart.length; i++) { //extract items of same type
                 this.IDs[this.copyCart[i]] = (this.IDs[this.copyCart[i]] + 1) || 1;
             }
             this.updateTotal();
@@ -68,12 +67,12 @@ export default {
             this.$store.dispatch("addCoffeeToCart", coffee);
         },
         decrease(coffee) {
-            console.log('remove; ', coffee);
+            console.log('decrease: ', coffee)
             this.$store.dispatch("removeCoffeeFromCart", coffee);
         },
-        updateTotal() {
-            for(let index in this.noDuplicatesCart) {
-                this.total += this.noDuplicatesCart[index].price * this.IDs[this.noDuplicatesCart[index].id];
+        updateTotal() { //update total cost for this order
+            for(let index in this.cart) {
+                this.total += this.cart[index].price;
             }
         },
         setOrder() {
@@ -149,6 +148,7 @@ button {
     flex-direction: column;
     justify-content: space-around;
     align-items:flex-start;
+    max-height: 20rem;
 }
 .list-item {
     display: flex;
@@ -158,13 +158,16 @@ button {
     width: 100%;
     height: 4rem;
 }
+.total-container {
+    margin-top: auto;
+    margin-bottom: 2rem;
+}
 .total {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
     flex-direction: row;
     width: 100%;
-    margin-top: 3rem;
 }
 .total h2 {
     padding: 0 1rem 0 0;
