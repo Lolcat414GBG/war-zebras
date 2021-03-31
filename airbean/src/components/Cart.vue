@@ -7,7 +7,8 @@
                 <div class="list-item" v-for="(item, index) in noDuplicatesCart" v-bind:key="index">
                     <div class="item-price">
                         <h3>{{ item.title }}</h3>
-                        <p>{{ item.price*IDs[item.id] }} kr</p>
+                        <!--<p>{{ item.price*IDs[item.id] }} kr</p>-->
+                        <p>{{ item.price }} kr</p>
                     </div>
                     <div class="dots"></div>
                     <div class="count">
@@ -19,10 +20,10 @@
             </article>
             <div class="list-item">
                 <div class="item-price">
-                    <h2>Total</h2>
+                    <h2>Total</h2><div class="dot"></div>
                     <p>inkl moms + drönarleverans</p>
                 </div>
-                <div class="dots"></div>
+                
                 <h2>{{ total }} kr</h2>
             </div>
         </div>
@@ -53,7 +54,7 @@ export default {
         }
     },
     created() {
-        console.log('created');
+        //console.log('created');
         this.setCart();
     },
     methods: {
@@ -90,6 +91,14 @@ export default {
     flex-grow: 1;
 }
 .dots {
+    background-image: radial-gradient(circle, #000 0.5px, rgba(255,255,255,0) 1px);
+    background-position: bottom;
+    background-size: 5px 5px;
+    background-repeat: repeat-x;
+    height: 5px;
+    flex-grow: 15;
+}
+.dot {
     background-image: radial-gradient(circle, #000 0.5px, rgba(255,255,255,0) 1px);
     background-position: bottom;
     background-size: 5px 5px;
