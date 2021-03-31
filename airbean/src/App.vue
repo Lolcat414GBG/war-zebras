@@ -20,7 +20,7 @@
   box-sizing: border-box;
 }
 #app {
-  font-family: 'PT Serif', serif;;
+  font-family: 'PT Serif', serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;

@@ -11,7 +11,7 @@
     <span>{{ orderReply.eta }}</span>
       minuter
     </div>
-    <router-link class="ok_button" to="/">OK, cool!</router-link>
+    <router-link class="ok_button" to="/menu">OK, cool!</router-link>
   
     <!--<img alt="Vue logo" src="../assets/add.svg">
     <img alt="Vue logo" src="../assets/airbean-landing.svg">

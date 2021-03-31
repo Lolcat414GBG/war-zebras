@@ -1,6 +1,6 @@
 <template>
   <main>
-    <Cart v-show="showCart" />
+    <Cart v-show="showCart" :key="componentKey" />
     <Header />
     <CartButton @click.native="showCart = !showCart" />
     <section class="container">
@@ -40,7 +40,14 @@ export default {
   },
   data() {
     return {
-      showCart: false
+      showCart: false,
+      componentKey: 0
+    }
+  },
+  watch: {
+    newCount(newerCount, oldCount) {
+      console.log('testar i menu' + newerCount + ' old count ' + oldCount)
+      this.forceRerender();
     }
   },
   created() {
@@ -50,6 +57,9 @@ export default {
     menu() {
       return this.$store.getters.getMenu;
     },
+    newCount() {
+            return this.$store.state.cart.length
+    }
   },
   methods: {
     async fetchMenuFromApi() {
@@ -57,8 +67,13 @@ export default {
     },
     addCoffee(coffee) {
       this.$store.dispatch("addCoffeeToCart", coffee);
+      this.forceRerender();
+    },
+    forceRerender() {
+      console.log('force', this.componentKey)
+      this.componentKey += 1;
     }
-  },
+  }
 };
 </script>
 

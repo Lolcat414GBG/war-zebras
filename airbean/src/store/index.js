@@ -23,6 +23,9 @@ export default new Vuex.Store({
     setCoffeeToCart(state, coffee) {
       state.cart.push(coffee)
     },
+    removeCoffeFromCart(state, coffee) {
+        state.cart.splice(coffee, 1)
+    },
     clearCart(state) {
       state.cart = []
     },
@@ -59,6 +62,9 @@ export default new Vuex.Store({
     },
     addCoffeeToCart(ctx, coffee) {
       ctx.commit('setCoffeeToCart', coffee)
+    },
+    removeCoffeeFromCart(ctx, coffee) {
+        ctx.commit('removeCoffeFromCart', coffee)
     }
   },
   getters: {

@@ -14,18 +14,19 @@
                     <div class="count">
                         <button v-on:click="increase(item)" class="increase-btn"><img src="../assets/arrow-up.svg"></button>
                         <p>{{ IDs[item.id] }}</p>
-                        <button class="decrease-btn"><img src="../assets/arrow-down.svg"></button>
+                        <button v-on:click="decrease(item)" class="decrease-btn"><img src="../assets/arrow-down.svg"></button>
                     </div>
                 </div>
             </article>
-            <div class="list-item">
-                <div class="item-price">
-                    <h2>Total</h2><div class="dot"></div>
-                    <p>inkl moms + drönarleverans</p>
+            <div>
+                <div class="total">
+                    <h2>Total</h2>
+                    <div class="dot"></div>
+                    <h2>{{ total }} kr</h2>
                 </div>
-                
-                <h2>{{ total }} kr</h2>
+                <p class="moms">inkl moms + drönarleverans</p>
             </div>
+            <button class="order-btn" @click="setOrder"><h3>Take my money!</h3></button>
         </div>
         <section class="cart-overlay"></section>
     </section>
@@ -39,7 +40,7 @@ export default {
             count: 1,
             total: 0,
             id: Number,
-            IDs: {}
+            IDs: {},
         }
     },
     computed: {
@@ -54,31 +55,29 @@ export default {
         }
     },
     created() {
-        //console.log('created');
         this.setCart();
     },
     methods: {
-        increase: function(coffee) {
-            this.$store.dispatch("addCoffeeToCart", coffee);
-            console.log('increase copy', this.copyCart)
-            console.log('increase nodup', this.noDuplicatesCart)
-            console.log('increase cart', this.cart)
-            console.log('increase IDs', this.IDs)
-            
-            this.setCart();
-        },
         setCart(){
-            //this.newCartList = this.cart.map(item => item.id);
             for(let i = 0; i < this.copyCart.length; i++) {
                 this.IDs[this.copyCart[i]] = (this.IDs[this.copyCart[i]] + 1) || 1;
             }
             this.updateTotal();
         },
+        increase(coffee) {
+            this.$store.dispatch("addCoffeeToCart", coffee);
+        },
+        decrease(coffee) {
+            console.log('remove; ', coffee);
+            this.$store.dispatch("removeCoffeeFromCart", coffee);
+        },
         updateTotal() {
             for(let index in this.noDuplicatesCart) {
-                //console.log(this.shortCartList[index].price * this.IDs[this.shortCartList[index].id]);
                 this.total += this.noDuplicatesCart[index].price * this.IDs[this.noDuplicatesCart[index].id];
             }
+        },
+        setOrder() {
+            this.$store.dispatch("purchaseCoffee")
         }
     }
 }
@@ -104,7 +103,9 @@ export default {
     background-size: 5px 5px;
     background-repeat: repeat-x;
     height: 5px;
-    flex-grow: 15;
+    flex-grow: 2;
+    align-self: flex-end;
+    margin-bottom: 5px;
 }
 .count {
     display: flex;
@@ -113,15 +114,33 @@ export default {
     font-weight: bold;
     width: 1rem;
 }
-.count button {
-    background: none;
+.moms {
+    text-align: left;
+}
+footer {
+    position: absolute;
+    bottom: 2rem;
+}
+button {
     border: none;
     outline: none;
+}
+.count button {
+    background: none;
 }
 .increase-btn {
     margin-bottom: 2px;
 }
-.list-item p {
+.order-btn {
+    background: #2F2926;
+    font-family: 'PT Serif', serif;
+    font-size: 1.3em;
+    color: #fff;
+    padding: 0.7rem 2rem;
+    border-radius: 3rem;
+    align-self: center;
+}
+.list-item p, .moms {
     font-family: 'Work Sans', sans-serif;
     font-size: 0.8em;
 }
@@ -130,7 +149,6 @@ export default {
     flex-direction: column;
     justify-content: space-around;
     align-items:flex-start;
-    margin-top: 2rem;
 }
 .list-item {
     display: flex;
@@ -139,6 +157,20 @@ export default {
     flex-direction: row;
     width: 100%;
     height: 4rem;
+}
+.total {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-direction: row;
+    width: 100%;
+    margin-top: 3rem;
+}
+.total h2 {
+    padding: 0 1rem 0 0;
+}
+.total h2:last-child {
+    padding: 0 0 0 1rem;
 }
 h1 {
     font-size: 2em;
@@ -151,7 +183,7 @@ h1 {
 }
 .cart-overlay {
     background-color: black;
-    opacity: 0.8;
+    opacity: 0.7;
     height: 100vh;
     width: 100vw;
     z-index: 20;
@@ -170,6 +202,9 @@ h1 {
     border-radius: 0.2rem;
     min-height: 87vh;
     padding: 2rem 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 .triangle {
     width: 0;
