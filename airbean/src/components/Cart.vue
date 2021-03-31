@@ -26,7 +26,7 @@
                 </div>
                 <p class="moms">inkl moms + drönarleverans</p>
             </div>
-            <button v-if="cart.length != 0" class="order-btn" @click="setOrder"><h3>Take my money!</h3></button>
+            <button v-show="cart.length != 0" class="order-btn" @click="setOrder"><h3>Take my money!</h3></button>
         </div>
         <section class="cart-overlay"></section>
     </section>
