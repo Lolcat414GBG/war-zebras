@@ -1,11 +1,7 @@
 <template>
     <section>
         <header>
-            <button v-on:click="showNavigation" class="menu-icon"><img src="../assets/navicon.svg"></button>
-            <div class="cart-icon">
-                <div class="counter"><p>{{ cart }}</p></div>
-                <img src="../assets/bag.svg">
-            </div>
+            <button v-on:click="toggleNavigation" class="menu-icon"><img src="../assets/navicon.svg"></button>
         </header>
         <Nav v-if="showNav"></Nav>
     </section>
@@ -25,14 +21,11 @@ export default {
     computed: {
         showNav(){
             return this.$store.state.showNav
-        },
-        cart(){
-            return this.$store.state.cart.length
         }
     },
     methods: {
-        showNavigation: function() {
-            this.$store.dispatch('showOrHideNav', true);
+        toggleNavigation: function() {
+            this.$store.dispatch('toggleNav', true);
         }
     }
 }
@@ -40,13 +33,10 @@ export default {
 
 <style scoped>
 header {
-    background-image: url(/img/graphics-header.ed1c9c2c.svg);
-    height: 6rem;
+    background-image: url("../assets/graphics-header.svg");
+    height: 7rem;
     background-repeat: no-repeat;
     padding: 1rem;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
 }
 .menu-icon {
     background: #fff;
@@ -71,6 +61,8 @@ header {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    outline: none;
+    border: none;
 }
 .counter {
     background-color: #E5674E;

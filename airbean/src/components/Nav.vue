@@ -19,7 +19,7 @@ export default {
     name: 'Nav',
     methods: {
         closeNav: function() {
-            this.$store.dispatch('showOrHideNav', false);
+            this.$store.dispatch('toggleNav', false);
         }
     }
 }
@@ -52,10 +52,6 @@ main {
     font-size: 2em;
     font-weight: 700;
     z-index: 10;
-    /*display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;*/
 }
 .nav-overlay a, .nav-overlay a:active {
     color: #fff;
