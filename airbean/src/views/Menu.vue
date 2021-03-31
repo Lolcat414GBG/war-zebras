@@ -4,7 +4,7 @@
     <Header />
     <CartButton @click.native="showCart = !showCart" />
     <section class="container">
-    <div class="meny_header">
+    <div class="menu_header">
       <h1>Meny</h1>
     </div>
     <ul>
@@ -107,7 +107,7 @@ li {
 .container {
   padding: 1rem 2rem;
 }
-.meny_header {
+.menu_header {
   text-align: center;
 }
 </style>
