@@ -11,7 +11,7 @@ export default {
 footer {
     position: fixed;
     bottom: 0;
-    background-image: url(/img/graphics-footer.899a2bb4.svg);
+    background-image: url("../assets/graphics-footer.svg");
     height: 70px;
     width: 375px;
 }
