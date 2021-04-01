@@ -4,8 +4,8 @@
         <div class="cart-info">
             <h1>Din beställning</h1>
             <article class="order">
-                <div class="list-item" v-for="(item, index) in noDuplicatesCart" v-bind:key="index">
-                    <div class="item-price">
+                <div class="item" v-for="(item, index) in noDuplicatesCart" v-bind:key="index">
+                    <div class="item-info">
                         <h3>{{ item.title }}</h3>
                         <!--<p>{{ item.price*IDs[item.id] }} kr</p>-->
                         <p>{{ item.price }} kr</p>
@@ -82,8 +82,42 @@ export default {
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Work+Sans&display=swap');
-.item-price {
+
+.cart-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.cart-info {
+    background-color: white;
+    opacity: 1;
+    z-index: 1000;
+    height: 10rem;
+    width: 92vw;
+    position: fixed;
+    top: 4.5rem;
+    margin: 0 auto;
+    border-radius: 0.2rem;
+    min-height: 87vh;
+    padding: 2rem 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.triangle {
+    width: 0;
+    height: 0;
+    border-left: 18px solid transparent;
+    border-right: 18px solid transparent;
+    border-bottom: 20px solid #fff;
+    opacity: 1;
+    z-index: 1000;
+    position: fixed;
+    top: 3.8rem;
+    right: 1.6rem;
+}
+.item-info {
     text-align: left;
     flex-grow: 1;
 }
@@ -138,7 +172,7 @@ button {
     border-radius: 3rem;
     align-self: center;
 }
-.list-item p, .moms {
+.item p, .moms {
     font-family: 'Work Sans', sans-serif;
     font-size: 0.8em;
 }
@@ -149,7 +183,7 @@ button {
     align-items:flex-start;
     max-height: 20rem;
 }
-.list-item {
+.item {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -177,12 +211,6 @@ button {
 h1 {
     font-size: 2em;
 }
-.cart-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
 .cart-overlay {
     background-color: black;
     opacity: 0.7;
@@ -191,33 +219,5 @@ h1 {
     z-index: 20;
     position: fixed;
     top: 0;
-}
-.cart-info {
-    background-color: white;
-    opacity: 1;
-    z-index: 1000;
-    height: 10rem;
-    width: 92vw;
-    position: fixed;
-    top: 4.5rem;
-    margin: 0 auto;
-    border-radius: 0.2rem;
-    min-height: 87vh;
-    padding: 2rem 1rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-.triangle {
-    width: 0;
-    height: 0;
-    border-left: 18px solid transparent;
-    border-right: 18px solid transparent;
-    border-bottom: 20px solid #fff;
-    opacity: 1;
-    z-index: 1000;
-    position: fixed;
-    top: 3.8rem;
-    right: 1.6rem;
 }
 </style>
