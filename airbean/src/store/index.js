@@ -45,7 +45,9 @@ export default new Vuex.Store({
       ctx.commit('setMenu', data.menu)
       //console.log(data)
     },
-    async purchaseCoffee(ctx) {
+    async purchaseCoffee(ctx, info) {
+      console.log(info.total);
+      console.log(info.date);
       const response = await fetch(url, {
         method: 'POST',
         headers: {

@@ -75,7 +75,8 @@ export default {
             }
         },
         setOrder() {
-            this.$store.dispatch("purchaseCoffee")
+            var currentDate = new Date().toJSON().slice(2,10).replace(/-/g,'/');
+            this.$store.dispatch("purchaseCoffee", {total: this.total, date: currentDate});
         }
     }
 }
