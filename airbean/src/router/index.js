@@ -2,7 +2,6 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Landing from '../views/Landing.vue'
 import Menu from '../views/Menu.vue'
-import Cart from '../views/Cart.vue'
 import Status from '../views/Status.vue'
 import Profile from '../views/Profile.vue'
 import About from '../views/About.vue'
@@ -19,11 +18,6 @@ const routes = [
     path: '/menu',
     name: 'Menu',
     component: Menu
-  },
-  {
-    path: '/cart',
-    name: 'Cart',
-    component: Cart
   },
   {
     path: '/status',

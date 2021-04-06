@@ -23,6 +23,9 @@ export default new Vuex.Store({
     setCoffeeToCart(state, coffee) {
       state.cart.push(coffee);
     },
+    removeCoffeFromCart(state, coffee) { //remove the first item in cart that matches the coffee to delete
+        state.cart.indexOf(coffee) > -1 ? state.cart.splice(state.cart.indexOf(coffee), 1) : false
+    },
     clearCart(state) {
       state.cart = [];
     },
@@ -39,10 +42,16 @@ export default new Vuex.Store({
         },
       });
       const data = await response.json();
+
       ctx.commit("setMenu", data.menu);
       console.log(data);
+      
+      //ctx.commit('setMenu', data.menu)
+      //console.log(data)
     },
-    async purchaseCoffee(ctx) {
+    async purchaseCoffee(ctx, info) {
+      console.log(info.total);
+      console.log(info.date);
       const response = await fetch(url, {
         method: "POST",
         headers: {
@@ -57,9 +66,15 @@ export default new Vuex.Store({
     toggleNav(ctx, bol) {
       ctx.commit("toggleNavigation", bol);
     },
-    addCoffeeToCart(ctx, coffee) {
+   /* addCoffeeToCart(ctx, coffee) {
       ctx.commit("setCoffeeToCart", coffee);
+    },*/
+    
+      ctx.commit('setCoffeeToCart', coffee)
     },
+    removeCoffeeFromCart(ctx, coffee) {
+        ctx.commit('removeCoffeFromCart', coffee)
+    }
   },
   getters: {
     getMenu(state) {

@@ -62,6 +62,9 @@ h1 {
   font-family: "PT Serif", serif;
   margin-bottom: 1rem;
 }
+h3 {
+  padding-bottom: 3rem;
+}
 h5 {
   font-size: 14px;
   font-weight: bolder;

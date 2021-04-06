@@ -1,6 +1,6 @@
 <template>
   <main>
-    <Cart v-show="showCart" />
+    <Cart v-show="showCart" :key="componentKey" />
     <Header />
     <CartButton @click.native="showCart = !showCart" />
     <section class="container">
@@ -12,7 +12,7 @@
         <button @click="addCoffee(coffee)" class="add_coffee">
           <div class="add_coffee_icon"></div>
         </button>
-        <div>
+        <div class="coffee_item">
           <h2 class="coffee_title">{{ coffee.title }}</h2>
           <p class="coffee_desc">{{ coffee.desc }}</p>
         </div>
@@ -40,7 +40,13 @@ export default {
   },
   data() {
     return {
-      showCart: false
+      showCart: false,
+      componentKey: 0
+    }
+  },
+  watch: {
+    newCount() { //rerender cart component through the componentKey if the length of the cart changes
+      this.forceRerender();
     }
   },
   created() {
@@ -50,6 +56,12 @@ export default {
     menu() {
       return this.$store.getters.getMenu;
     },
+    newCount() {
+      return this.$store.state.cart.length
+    },
+    cart() {
+      return this.$store.state.cart
+    }
   },
   methods: {
     async fetchMenuFromApi() {
@@ -57,8 +69,11 @@ export default {
     },
     addCoffee(coffee) {
       this.$store.dispatch("addCoffeeToCart", coffee);
+    },
+    forceRerender() {
+      this.componentKey += 1;
     }
-  },
+  }
 };
 </script>
 
@@ -74,6 +89,7 @@ export default {
   align-items: center;
   outline: none;
   border: none;
+  align-self: center;
 }
 .add_coffee_icon {
   background-image: url("../assets/add.svg");
@@ -88,9 +104,12 @@ ul {
 li {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   gap: 16px;
   margin-top: 18px;
+}
+.coffee_item {
+  flex: auto;
 }
 .coffee_price {
   font-weight: 700;
@@ -99,10 +118,14 @@ li {
 .coffee_title {
   font-weight: 700;
   font-size: 23px;
+  overflow: hidden;
+  text-align: left;
 }
 .coffee_desc {
+  font-family: 'Work Sans', sans-serif;
   font-weight: 400;
   font-size: 12px;
+  text-align: left;
 }
 .container {
   padding: 1rem 2rem;
