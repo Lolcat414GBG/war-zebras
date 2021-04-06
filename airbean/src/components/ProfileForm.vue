@@ -1,5 +1,5 @@
 <template>
-<main id="login__overlay" v-if="showForm">
+<main id="login__overlay" v-show="showForm">
 <!--<main v-show="Overlay" id="login__overlay">-->
   <section class="login__terms">
     <div class="logo__airbean"></div>
