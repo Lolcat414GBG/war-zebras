@@ -7,7 +7,7 @@ import LocalStorage from 'lowdb/adapters/LocalStorage'
 const adapter = new LocalStorage('db')
 const db = low(adapter)
 
-db.defaults({ users: [] })
+db.defaults({ user: [] })
   .write()
 
 Vue.use(Vuex)
@@ -23,12 +23,17 @@ export default new Vuex.Store({
     name: '',
     email: '',
     dateOfOrder: '',
-    orderNumber: '',
-    total: ''
+    total: '',
+    orderHistory: []
   },
   mutations: {
     setMenu(state, menu) {
       state.menu = menu
+      console.log('before: ', db.get('user').write())
+      //om man vill nollställa db ta bort kommenteringen nedan.
+      //const newState = {}
+      //db.setState(newState)
+      console.log('after: ', db.get('user').write())
     },
     toggleNavigation(state, bol) {
       state.showNav = bol
@@ -44,14 +49,29 @@ export default new Vuex.Store({
     },
     setOrderReply(state, orderReply) {
       state.orderReply = orderReply
+      const user = db.get('user').write()
+      //only add orders if there is a registered user
+      if(user !== undefined) {
+        if(user.length !== 0) {
+          console.log('i if-satsen')
+          db.get('user')
+            .push( { date: this.state.dateOfOrder, total: this.state.total, orderNumber: this.state.orderReply.orderNr })
+          .write()
+        }
+      }
+    },
+    addUser(state, user) {
+      const userDb = db.get('user').write();
+      //only push the user if the storage is empty
+      if(userDb.length === 0) {
+        db.get('user')
+          .push({ name: user.name, email: user.email, order: {} })
+          .write()
+      }
     },
     setDateAndTotal(state, info) {
       state.dateOfOrder = info.date
       state.total = info.total
-      db.get('users')
-        .push({ order: [ { date: info.date, total: info.total } ]})
-        .write()
-      console.log(db.get('users').write())
     }
     
   },
@@ -90,6 +110,9 @@ export default new Vuex.Store({
     },
     removeCoffeeFromCart(ctx, coffee) {
         ctx.commit('removeCoffeFromCart', coffee)
+    },
+    addUser(ctx, user) {
+        ctx.commit('addUser', user)
     }
   },
   getters: {
