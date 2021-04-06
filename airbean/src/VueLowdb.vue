@@ -20,7 +20,7 @@ db.defaults({ items: [] })
 //fuction add() {
     db.get('items')
         .push({ time: Date.now})
-        .wirte()
+        .write()
 
 //}
 
