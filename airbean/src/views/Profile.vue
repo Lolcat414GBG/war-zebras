@@ -1,6 +1,6 @@
 <template>
 
-<main >
+<main v-bind:orders="orders">
   <Header/>
   <section class="info__profile">
     <div class="img__profile"></div>
@@ -9,8 +9,9 @@
   </section>
 
   <section class="list__orderhistory">
+
     <h2>Orderhistorik</h2>
-   <ul> 
+   <ul  v-for="order in orders" :key="order.id"> 
       <li>
 
       </li>
@@ -24,11 +25,17 @@
 <script>
 import Header from "../components/Header";
 import ProfileForm from "../components/ProfileForm.vue"
+import orders from "../assets/orderlistdummie.json"
 
 export default {
 components: {
   Header,
   ProfileForm
+}, 
+computed: {
+  order() {
+    return orders.orders;
+  }
 }
 }
 </script>

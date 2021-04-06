@@ -1,5 +1,6 @@
 <template>
 <main id="login__overlay" v-if="showForm">
+<!--<main v-show="Overlay" id="login__overlay">-->
   <section class="login__terms">
     <div class="logo__airbean"></div>
     <h1>Välkommen till AirBean-familjen!</h1>
@@ -23,9 +24,9 @@
             v-model="LoginEmail"
             name="LoginEmail"
             placeholder="sixten.kaffelover@zocom.se"/>
-
             
            <input
+           id="btn__login"
             class="login__GDPR" 
             type="radio"
             value="GDPR"
@@ -34,6 +35,12 @@
             
           <button class="btn__login" v-on:click="addUser">Logga in</button>
 
+<!--          <input 
+          class="btn__login"
+          type="button"  
+          v-model="addProfile" 
+          v-on:click="Overlay = !Overlay"
+          placeholder="Logga in"/>-->
         </form>
     </section>
 </main>
@@ -56,6 +63,7 @@ export default {
       }
     }
 }
+
 </script>
 
 <style scoped>
