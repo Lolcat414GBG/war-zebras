@@ -12,21 +12,7 @@
       minuter
     </div>
     <router-link class="ok_button" to="/menu">OK, cool!</router-link>
-  
-    <!--<img alt="Vue logo" src="../assets/add.svg">
-    <img alt="Vue logo" src="../assets/airbean-landing.svg">
-    <img alt="Vue logo" src="../assets/arrow-down.svg">
-    <img alt="Vue logo" src="../assets/arrow-up.svg">
-    <img alt="Vue logo" src="../assets/bag.svg">
-    <img alt="Vue logo" src="../assets/close.svg">
-    <img alt="Vue logo" src="../assets/drone.svg">
-    <img alt="Vue logo" src="../assets/eva-cortado.jpg">
-    <img alt="Vue logo" src="../assets/graphics-footer.svg">
-    <img alt="Vue logo" src="../assets/graphics-header.svg">
-    <img alt="Vue logo" src="../assets/intro-graphic-left.svg">
-    <img alt="Vue logo" src="../assets/intro-graphic-right.svg">
-    <img alt="Vue logo" src="../assets/loader.png">
-    <img alt="Vue logo" src="../assets/navicon.svg">-->
+
   </section>
 </template>
 
