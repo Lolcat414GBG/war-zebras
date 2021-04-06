@@ -1,10 +1,18 @@
-import Vue from "vue";
-import Vuex from "vuex";
-import router from "../router";
+import Vue from 'vue'
+import Vuex from 'vuex'
+import router from '../router'
+import low from 'lowdb'
+import LocalStorage from 'lowdb/adapters/LocalStorage'
 
-Vue.use(Vuex);
+const adapter = new LocalStorage('db')
+const db = low(adapter)
 
-const url = "http://localhost:3000/api/beans";
+db.defaults({ users: [] })
+  .write()
+
+Vue.use(Vuex)
+
+const url = 'http://localhost:3000/api/beans';
 
 export default new Vuex.Store({
   state: {
@@ -12,64 +20,72 @@ export default new Vuex.Store({
     showNav: false,
     cart: [],
     orderReply: null,
+    name: '',
+    email: '',
+    dateOfOrder: '',
+    orderNumber: '',
+    total: ''
   },
   mutations: {
     setMenu(state, menu) {
-      state.menu = menu;
+      state.menu = menu
     },
     toggleNavigation(state, bol) {
-      state.showNav = bol;
+      state.showNav = bol
     },
     setCoffeeToCart(state, coffee) {
-      state.cart.push(coffee);
+      state.cart.push(coffee)
     },
     removeCoffeFromCart(state, coffee) { //remove the first item in cart that matches the coffee to delete
         state.cart.indexOf(coffee) > -1 ? state.cart.splice(state.cart.indexOf(coffee), 1) : false
     },
     clearCart(state) {
-      state.cart = [];
+      state.cart = []
     },
     setOrderReply(state, orderReply) {
-      state.orderReply = orderReply;
+      state.orderReply = orderReply
     },
+    setDateAndTotal(state, info) {
+      state.dateOfOrder = info.date
+      state.total = info.total
+      db.get('users')
+        .push({ order: [ { date: info.date, total: info.total } ]})
+        .write()
+      console.log(db.get('users').write())
+    }
+    
   },
   actions: {
     async fetchMenu(ctx) {
       const response = await fetch(url, {
-        method: "GET",
+        method: 'GET',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json'
         },
       });
       const data = await response.json();
-
-      ctx.commit("setMenu", data.menu);
-      console.log(data);
-      
-      //ctx.commit('setMenu', data.menu)
+      ctx.commit('setMenu', data.menu)
       //console.log(data)
     },
     async purchaseCoffee(ctx, info) {
       console.log(info.total);
       console.log(info.date);
       const response = await fetch(url, {
-        method: "POST",
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json'
         },
       });
-      const data = await response.json();
-      ctx.commit("clearCart");
-      ctx.commit("setOrderReply", data);
-      router.push("/status");
+      const data = await response.json()
+      ctx.commit('clearCart')
+      ctx.commit('setOrderReply', data)
+      ctx.commit('setDateAndTotal', info)
+      router.push('/status')
     },
     toggleNav(ctx, bol) {
-      ctx.commit("toggleNavigation", bol);
+      ctx.commit('toggleNavigation', bol)
     },
-   /* addCoffeeToCart(ctx, coffee) {
-      ctx.commit("setCoffeeToCart", coffee);
-    },*/
-    
+    addCoffeeToCart(ctx, coffee) {
       ctx.commit('setCoffeeToCart', coffee)
     },
     removeCoffeeFromCart(ctx, coffee) {
@@ -78,13 +94,13 @@ export default new Vuex.Store({
   },
   getters: {
     getMenu(state) {
-      return state.menu;
+      return state.menu
     },
     getCart(state) {
-      return state.cart;
+      return state.cart
     },
     getOrderReply(state) {
-      return state.orderReply;
-    },
-  },
+      return state.orderReply
+    }
+  }
 });
