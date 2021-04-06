@@ -33,8 +33,13 @@
             name= "GDPR"/>
             <label class="label__GDPR" for="GDPR">GDPR ok!</label>
             
-          <button v-on:click="removeOverlay"></button>
-          
+          <input 
+          class="btn__login"
+          type="button"  
+          v-model="addProfile" 
+          v-on:click="removeOverlay"
+          placeholder="Logga in"/>
+
         </form>
     </section>
 </main>
@@ -125,6 +130,13 @@ align-self: flex-start;
   color: rgba(47, 41, 38, 1);
   font-size: 12px;
   align-self: flex-start;
+}
+
+.btn__login {
+  background-color: rgba(47, 41, 38, 1);
+  border-radius: 50px;
+  border-style: none;
+  width: 250px;
 }
 
 /*.login__GDPR:after {
