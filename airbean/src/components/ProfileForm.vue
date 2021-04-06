@@ -1,5 +1,5 @@
 <template>
-<main id="login__overlay">
+<main id="login__overlay" v-if="showForm">
   <section class="login__terms">
     <div class="logo__airbean"></div>
     <h1>Välkommen till AirBean-familjen!</h1>
@@ -13,7 +13,7 @@
             class="login__inputField" 
             type="text"
             v-model="LoginName"
-            name= "LoginName"
+            name="LoginName"
             placeholder="Sixten Kaffelövér"/>
 
             <p>Epost</p>
@@ -21,24 +21,18 @@
             class="login__inputField" 
             type="text"
             v-model="LoginEmail"
-            name= "LoginEmail"
+            name="LoginEmail"
             placeholder="sixten.kaffelover@zocom.se"/>
 
             
            <input
             class="login__GDPR" 
             type="radio"
-            v-model="GDPR"
             value="GDPR"
-            name= "GDPR"/>
+            name="GDPR"/>
             <label class="label__GDPR" for="GDPR">GDPR ok!</label>
             
-          <input 
-          class="btn__login"
-          type="button"  
-          v-model="addProfile" 
-          v-on:click="removeOverlay"
-          placeholder="Logga in"/>
+          <button class="btn__login" v-on:click="addUser">Logga in</button>
 
         </form>
     </section>
@@ -47,7 +41,20 @@
 
 <script>
 export default {
-
+    data() {
+      return {
+        LoginEmail: '',
+        LoginName: '',
+        showForm: true
+      }
+    },
+    methods: {
+      addUser() {
+        console.log(this.LoginName, this.LoginEmail)
+        this.$store.dispatch("addUser", { name: this.LoginName, email: this.LoginEmail});
+        this.showForm = false;
+      }
+    }
 }
 </script>
 
@@ -131,12 +138,15 @@ align-self: flex-start;
   font-size: 12px;
   align-self: flex-start;
 }
-
 .btn__login {
-  background-color: rgba(47, 41, 38, 1);
-  border-radius: 50px;
-  border-style: none;
-  width: 250px;
+    background: #2F2926;
+    font-family: 'PT Serif', serif;
+    font-size: 1.3em;
+    color: #fff;
+    padding: 0.7rem 3rem;
+    border-radius: 3rem;
+    align-self: center;
+    font-weight: 700;
 }
 
 /*.login__GDPR:after {
