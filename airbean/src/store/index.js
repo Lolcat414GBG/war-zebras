@@ -65,7 +65,7 @@ export default new Vuex.Store({
             //only push the user if the storage is empty
             if (userDb.length === 0) {
                 db.get('user')
-                    .push({ name: user.name, email: user.email, order: {} })
+                    .push({ name: user.name, email: user.email, orders: {} })
                     .write()
             }
         },
