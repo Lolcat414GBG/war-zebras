@@ -2,28 +2,28 @@
 
 <main v-bind:orders="orders">
   <Header/>
-  <section class="info__profile">
+  <section class="info-profile">
     <div class="img__profile"></div>
     <h1>{{ name }}</h1>
     <p class="email">{{ email }}</p>
   </section>
 
-  <section class="list__orderhistory">
+  <section class="list-orderhistory">
 
     <h2>Orderhistorik</h2>
    <ul class="order-container"> 
       <li v-for="(order, index) in orders" :key="index">
         <div class="left">
-          <p class="order-number">#{{ order.orderNumber }}</p>
-          <p class="bottom-text">total ordersumma</p></div>
-        <div class="right">
-          <p class="order-date">{{ order.date }}</p>
-          <p class="order-total bottom-text">{{ order.total }} kr</p>
+          <p class="order__number">#{{ order.orderNumber }}</p>
+          <p class="bottom__text">total ordersumma</p></div>
+        <div class="list__orderhistory--right">
+          <p class="order__date">{{ order.date }}</p>
+          <p class="order__total bottom__text">{{ order.total }} kr</p>
         </div>
       </li>
     </ul>
     <hr>
-    <div class="total-spent">
+    <div class="total__spent">
       <h5>Totalt spenderat</h5>
       <p>{{ total }} kr</p>
     </div>
@@ -83,7 +83,7 @@ main {
   width: 100%;
 }
 
-.info__profile{
+.info-profile{
   height: 45%;
   width: 100%;
   align-self: flex-start;
@@ -93,15 +93,15 @@ main {
 
 .img__profile{
    background: url("../assets/profile-icon.svg") center no-repeat;
-   height: 40%;
+   height: 46%;
    width: 100%;
 }
 
-.list__orderhistory {
+.list-orderhistory {
   padding: 0 2rem;
   text-align: left;
 }
-.list__orderhistory.right {
+.list__orderhistory--right {
   text-align: right;
 }
 
@@ -120,43 +120,31 @@ h5 {
     padding-bottom: 0.7rem;
     color: rgba(255, 255, 255, 0.700);
 }
-.order-container li {
+.order__container li {
   border-bottom: 1px solid rgba(255, 255, 255, 0.200);
   margin-top: 0.7rem;
 }
-.order-container li:last-child {
+.order__container li:last-child {
   border-bottom: none;
 }
-.bottom-text {
+.bottom__text {
   margin-bottom: 0.7rem;
   color: rgba(255, 255, 255, 0.500);
 }
-.order-total {
+.order__total {
     text-align: right;
 }
 .right {
   text-align: right;
 }
-.order-number, .total-spent {
+.order__number, .total-spent {
     font-weight: 700;
     font-size: 1em;
 }
-.total-spent {
+.total__spent {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   padding-top: 0.7em;
 }
-/**
-<ul class="order-container"> 
-      <li v-for="(order, index) in orders" :key="index">
-        <div class="left">
-          <p class="order-number">#{{ order.orderNumber }}</p>
-          <p class="total">total ordersumma</p></div>
-        <div class="right">
-          <p class="order-date">{{ order.date }}</p>
-          <p class="total">{{ order.total }} kr</p>
-        </div>
-      </li>
-    </ul> */
 </style>
