@@ -100,6 +100,7 @@ main {
 .list__orderhistory {
   padding: 0 2rem;
   text-align: left;
+  overflow: scroll;
 }
 .list__orderhistory--right {
   text-align: right;
