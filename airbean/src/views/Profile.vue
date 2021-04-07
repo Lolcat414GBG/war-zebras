@@ -2,16 +2,16 @@
 
 <main v-bind:orders="orders">
   <Header/>
-  <section class="info-profile">
+  <section class="info__profile">
     <div class="img__profile"></div>
     <h1>{{ name }}</h1>
     <p class="email">{{ email }}</p>
   </section>
 
-  <section class="list-orderhistory">
+  <section class="list__orderhistory">
 
     <h2>Orderhistorik</h2>
-   <ul class="order-container"> 
+   <ul class="order__container"> 
       <li v-for="(order, index) in orders" :key="index">
         <div class="left">
           <p class="order__number">#{{ order.orderNumber }}</p>
@@ -83,7 +83,7 @@ main {
   width: 100%;
 }
 
-.info-profile{
+.info__profile{
   height: 45%;
   width: 100%;
   align-self: flex-start;
@@ -97,7 +97,7 @@ main {
    width: 100%;
 }
 
-.list-orderhistory {
+.list__orderhistory {
   padding: 0 2rem;
   text-align: left;
 }
@@ -113,7 +113,7 @@ h5 {
   font-family: 'Work Sans', sans-serif;
   color: rgba(255, 255, 255, 0.700);
 }
-.order-container, .total-spent {
+.order__container, .total__spent {
     font-family: 'Work Sans', sans-serif;
     font-size: 0.9em;
     font-weight: normal;
@@ -137,7 +137,7 @@ h5 {
 .right {
   text-align: right;
 }
-.order__number, .total-spent {
+.order__number, .total__spent {
     font-weight: 700;
     font-size: 1em;
 }
