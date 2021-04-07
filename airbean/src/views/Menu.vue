@@ -3,20 +3,20 @@
     <Cart v-show="showCart" :key="componentKey" />
     <Header />
     <CartButton @click.native="showCart = !showCart" />
-    <section class="container">
-    <div class="menu_header">
+    <section class="menu-container">
+    <div class="menu__header">
       <h1>Meny</h1>
     </div>
     <ul>
       <li v-for="coffee in menu" :key="coffee.id">
-        <button @click="addCoffee(coffee)" class="add_coffee">
-          <div class="add_coffee_icon"></div>
+        <button @click="addCoffee(coffee)" class="add__coffee">
+          <div class="add_coffee__icon"></div>
         </button>
-        <div class="coffee_item">
-          <h2 class="coffee_title">{{ coffee.title }}</h2>
-          <p class="coffee_desc">{{ coffee.desc }}</p>
+        <div class="coffee__item">
+          <h2 class="coffee__title">{{ coffee.title }}</h2>
+          <p class="coffee__desc">{{ coffee.desc }}</p>
         </div>
-        <span class="coffee_price"> {{ coffee.price }} kr</span>
+        <span class="coffee__price"> {{ coffee.price }} kr</span>
       </li>
     </ul>
     </section>
@@ -50,7 +50,7 @@ export default {
     }
   },
   created() {
-    this.fetchMenuFromApi();
+    this.fetchMenuFromApi(); // grabbing the menu from api
   },
   computed: {
     menu() {
@@ -79,7 +79,7 @@ export default {
 
 <style>
 
-.add_coffee {
+.add__coffee {
   width: 32px;
   height: 32px;
   background-color: black;
@@ -91,7 +91,7 @@ export default {
   border: none;
   align-self: center;
 }
-.add_coffee_icon {
+.add_coffee__icon {
   background-image: url("../assets/add.svg");
   width: 14px;
   height: 14px;
@@ -108,29 +108,29 @@ li {
   gap: 16px;
   margin-top: 18px;
 }
-.coffee_item {
+.coffee__item {
   flex: auto;
 }
-.coffee_price {
+.coffee__price {
   font-weight: 700;
   font-size: 23px;
 }
-.coffee_title {
+.coffee__title {
   font-weight: 700;
   font-size: 23px;
   overflow: hidden;
   text-align: left;
 }
-.coffee_desc {
+.coffee__desc {
   font-family: 'Work Sans', sans-serif;
   font-weight: 400;
   font-size: 12px;
   text-align: left;
 }
-.container {
+.menu-container {
   padding: 1rem 2rem;
 }
-.menu_header {
+.menu__header {
   text-align: center;
 }
 </style>
