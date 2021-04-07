@@ -1,7 +1,7 @@
 <template>
   <section class="nav-overlay">
       <header>
-          <button v-on:click="closeNav" class="close-icon"><img src="../assets/close.svg"></button>
+          <button v-on:click="closeNav" class="close__icon"><img src="../assets/close.svg"></button>
       </header>
       <main>
           <ul>
@@ -33,7 +33,7 @@ header {
 main {
     margin-top: 5rem;
 }
-.close-icon {
+.close__icon {
     width: 3rem;
     height: 3rem;
     padding: 0.8rem;
@@ -65,17 +65,18 @@ main {
     justify-content: center;
     align-items: center;
 }
-.nav-overlay ul li {
-    border-bottom: 1px solid #2F2926;
-}
+
 .nav-overlay ul li:last-child {
     border-bottom: none;
 }
+/** gradient on border to make it seem smaller */
 .nav-overlay ul li {
     border-image: linear-gradient(to right,#2F2926 20%, #2F2926 20%, #2F2926 40%, #665953 40%, #665953 60%, #2F2926 60%, #2F2926 80%, #2F2926 80%);
     border-image-slice: 1;
     padding: 1rem;
     width: 60%;
     justify-content: center;
+    border-bottom: 1px solid #2F2926;
+    margin-top: 0;
 }
 </style>
