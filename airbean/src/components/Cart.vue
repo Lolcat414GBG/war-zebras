@@ -1,19 +1,19 @@
 <template>
     <section class="cart-container">
         <div class="triangle"></div>
-        <div class="cart-info">
+        <div class="cart__info">
             <h1>Din beställning</h1>
             <article class="order">
                 <div class="item" v-for="(item, index) in noDuplicatesCart" v-bind:key="index">
-                    <div class="item-info">
+                    <div class="item__info">
                         <h3>{{ item.title }}</h3>
                         <p>{{ item.price }} kr</p>
                     </div>
                     <div class="dots"></div>
                     <div class="count">
-                        <button v-on:click="increase(item)" class="increase-btn"><img src="../assets/arrow-up.svg"></button>
+                        <button v-on:click="increase(item)" class="increase__btn"><img src="../assets/arrow-up.svg"></button>
                         <p>{{ IDs[item.id] }}</p>
-                        <button v-on:click="decrease(item)" class="decrease-btn"><img src="../assets/arrow-down.svg"></button>
+                        <button v-on:click="decrease(item)" class="decrease__btn"><img src="../assets/arrow-down.svg"></button>
                     </div>
                 </div>
             </article>
@@ -25,9 +25,9 @@
                 </div>
                 <p class="moms">inkl moms + drönarleverans</p>
             </div>
-            <button v-show="cart.length > 0" class="order-btn" @click="setOrder"><h3>Take my money!</h3></button>
+            <button v-show="cart.length > 0" class="order__btn" @click="setOrder"><h3>Take my money!</h3></button>
         </div>
-        <section class="cart-overlay"></section>
+        <section class="cart__overlay"></section>
     </section>
 </template>
 
@@ -89,7 +89,7 @@ export default {
     justify-content: center;
     align-items: center;
 }
-.cart-info {
+.cart__info {
     background-color: white;
     opacity: 1;
     z-index: 1000;
@@ -117,7 +117,7 @@ export default {
     top: 3.8rem;
     right: 1.6rem;
 }
-.item-info {
+.item__info {
     text-align: left;
     flex-grow: 1;
 }
@@ -160,10 +160,10 @@ button {
 .count button {
     background: none;
 }
-.increase-btn {
+.increase__btn {
     margin-bottom: 2px;
 }
-.order-btn {
+.order__btn {
     background: #2F2926;
     font-family: 'PT Serif', serif;
     font-size: 1.3em;
@@ -211,7 +211,7 @@ button {
 h1 {
     font-size: 2em;
 }
-.cart-overlay {
+.cart__overlay {
     background-color: black;
     opacity: 0.7;
     height: 100vh;
