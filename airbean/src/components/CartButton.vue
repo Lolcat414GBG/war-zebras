@@ -1,5 +1,5 @@
 <template>
-    <button class="cart-icon">
+    <button class="cart__icon">
         <div class="counter"><p>{{ cart }}</p></div>
         <img src="../assets/bag.svg">
     </button>
@@ -17,7 +17,7 @@ export default {
 </script>
 
 <style>
-.cart-icon {
+.cart__icon {
     background-color: #2F2926;
     width: 3.5rem;
     height: 3.5rem;
