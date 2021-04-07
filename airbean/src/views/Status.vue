@@ -1,18 +1,16 @@
 <template>
-  <section class="status">
-    <div class="order_number">
+  <section class="status-info">
+    <div class="order__number">
       <span>Ordernummer</span>
       #{{ orderReply.orderNr }}
     </div>
-    <!-- <img alt="Vue logo" src="../assets/drone.svg" /> -->
-    <div class="background"></div>
-    <h2 class="order_message">DIN BESTÄLLNING ÄR PÅ VÄG!</h2>
-    <div class="order_eta">
-    <span>{{ orderReply.eta }}</span>
+    <div class="background__image"></div>
+    <h2 class="order__message">DIN BESTÄLLNING ÄR PÅ VÄG!</h2>
+    <div class="order__eta">
+      <span>{{ orderReply.eta }}</span>
       minuter
     </div>
-    <router-link class="ok_button" to="/menu">OK, cool!</router-link>
-
+    <router-link class="ok__button" to="/menu">OK, cool!</router-link>
   </section>
 </template>
 
@@ -28,45 +26,43 @@ export default {
 };
 </script>
 <style scoped>
-.status {
-  background-color: #E5674E;
+.status-info {
+  background-color: #e5674e;
   height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   padding: 62px 48px 82px 48px;
-
 }
 
-.order_number {
+.order__number {
   font-size: 16px;
   color: white;
   font-weight: 700;
-  
 }
-.order_number span {
+.order__number span {
   font-weight: 400;
 }
-.background {
- background-image: url("../assets/drone.svg" );
- width: 216px;
- height: 119px;
+.background__image {
+  background-image: url("../assets/drone.svg");
+  width: 216px;
+  height: 119px;
 }
-.order_message {
+.order__message {
   font-size: 30px;
   color: white;
   font-weight: 700;
 }
-.order_eta {
+.order__eta {
   font-size: 18px;
-   color: white;
-   font-weight: 400;
+  color: white;
+  font-weight: 400;
 }
-.order_eta span {
+.order__eta span {
   font-weight: 700;
 }
-.ok_button {
+.ok__button {
   width: 180px;
   height: 55px;
   border-radius: 50px;
