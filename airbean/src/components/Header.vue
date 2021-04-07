@@ -1,7 +1,7 @@
 <template>
     <section>
         <header>
-            <button v-on:click="toggleNavigation" class="menu-icon"><img src="../assets/navicon.svg"></button>
+            <button v-on:click="toggleNavigation" class="menu__icon"><img src="../assets/navicon.svg"></button>
         </header>
         <Nav v-if="showNav"></Nav>
     </section>
@@ -38,7 +38,7 @@ header {
     background-repeat: no-repeat;
     padding: 1rem;
 }
-.menu-icon {
+.menu__icon {
     background: #fff;
     padding: 1.5rem;
     border-radius: 2rem;
@@ -52,18 +52,7 @@ header {
     outline: none;
     cursor: pointer;
 }
-.cart-icon {
-    background-color: #2F2926;
-    width: 3.5rem;
-    height: 3.5rem;
-    border-radius: 2rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    outline: none;
-    border: none;
-}
+
 .counter {
     background-color: #E5674E;
     width: 1.3rem;
