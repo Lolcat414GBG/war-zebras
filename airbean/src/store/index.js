@@ -7,7 +7,8 @@ import LocalStorage from 'lowdb/adapters/LocalStorage'
 const adapter = new LocalStorage('db')
 const db = low(adapter)
 
-db.defaults({ user: [] })
+//initiate the database
+db.defaults({ orders: [], user: [] })
     .write()
 
 Vue.use(Vuex)
@@ -20,20 +21,19 @@ export default new Vuex.Store({
         showNav: false,
         cart: [],
         orderReply: null,
-        name: '',
-        email: '',
+        name: db.get('user[0].name').write(),
+        email: db.get('user[0].email').write(),
         dateOfOrder: '',
         total: '',
-        orderHistory: []
+        orderHistory: db.get('orders').write()
     },
     mutations: {
         setMenu(state, menu) {
             state.menu = menu
-            console.log('before: ', db.get('user').write())
-                //om man vill nollställa db ta bort kommenteringen nedan.
+                //To clear the database remove comment below. Remember to comment out them afterwards.
+                //Also delete the local storage "showForm" and db in the browser
                 //const newState = {}
                 //db.setState(newState)
-            console.log('after: ', db.get('user').write())
         },
         toggleNavigation(state, bol) {
             state.showNav = bol
@@ -53,8 +53,7 @@ export default new Vuex.Store({
                 //only add orders if there is a registered user
             if (user !== undefined) {
                 if (user.length !== 0) {
-                    console.log('i if-satsen')
-                    db.get('user[0]').get('orders')
+                    db.get('orders')
                         .push({ date: state.dateOfOrder, total: state.total, orderNumber: state.orderReply.orderNr })
                         .write();
                 }
@@ -65,15 +64,16 @@ export default new Vuex.Store({
             //only push the user if the storage is empty
             if (userDb.length === 0) {
                 db.get('user')
-                    .push({ name: user.name, email: user.email, orders: {} })
-                    .write()
+                    .push({ name: user.name, email: user.email })
+                    .write();
+                state.name = user.name;
+                state.email = user.email;
             }
         },
         setDateAndTotal(state, info) {
-            state.dateOfOrder = info.date
-            state.total = info.total
+            state.dateOfOrder = info.date;
+            state.total = info.total;
         }
-
     },
     actions: {
         async fetchMenu(ctx) {
@@ -85,11 +85,8 @@ export default new Vuex.Store({
             });
             const data = await response.json();
             ctx.commit('setMenu', data.menu)
-                //console.log(data)
         },
         async purchaseCoffee(ctx, info) {
-            console.log(info.total);
-            console.log(info.date);
             const response = await fetch(url, {
                 method: 'POST',
                 headers: {
@@ -98,8 +95,8 @@ export default new Vuex.Store({
             });
             const data = await response.json()
             ctx.commit('clearCart')
-            ctx.commit('setOrderReply', data)
             ctx.commit('setDateAndTotal', info)
+            ctx.commit('setOrderReply', data)
             router.push('/status')
         },
         toggleNav(ctx, bol) {

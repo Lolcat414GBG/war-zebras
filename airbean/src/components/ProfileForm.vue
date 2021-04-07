@@ -1,6 +1,5 @@
 <template>
 <main id="login__overlay" v-show="showForm">
-<!--<main v-show="Overlay" id="login__overlay">-->
   <section class="login__terms">
     <div class="logo__airbean"></div>
     <h1>Välkommen till AirBean-familjen!</h1>
@@ -8,14 +7,15 @@
     </section>
 
     <section>
-        <form class="loginForm">
+        <form action="" class="loginForm" @submit.prevent="addUser">
             <p>Namn</p>
             <input
             class="login__inputField" 
             type="text"
             v-model="LoginName"
             name="LoginName"
-            placeholder="Sixten Kaffelövér"/>
+            placeholder="Sixten Kaffelövér"
+            required />
 
             <p>Epost</p>
             <input
@@ -23,24 +23,20 @@
             type="text"
             v-model="LoginEmail"
             name="LoginEmail"
-            placeholder="sixten.kaffelover@zocom.se"/>
-            
-           <input
-           id="btn__login"
-            class="login__GDPR" 
-            type="radio"
-            value="GDPR"
-            name="GDPR"/>
-            <label class="label__GDPR" for="GDPR">GDPR ok!</label>
-            
-          <button class="btn__login" v-on:click="addUser">Logga in</button>
+            placeholder="sixten.kaffelover@zocom.se"
+            required />
 
-<!--          <input 
-          class="btn__login"
-          type="button"  
-          v-model="addProfile" 
-          v-on:click="Overlay = !Overlay"
-          placeholder="Logga in"/>-->
+            <div class="gdpr">
+              <input
+                id="btn__login"
+                class="login__GDPR" 
+                type="radio"
+                value="GDPR"
+                name="GDPR"
+                required />
+                <label class="label__GDPR" for="GDPR">GDPR Ok!</label>
+            </div>
+          <button class="btn__login" type="submit">Logga in</button>
         </form>
     </section>
 </main>
@@ -49,17 +45,30 @@
 <script>
 export default {
     data() {
-      return {
-        LoginEmail: '',
-        LoginName: '',
-        showForm: true
+      //check if user is registered
+      const bol = window.localStorage.getItem('showForm');
+      if(bol === null) {
+          return {
+              LoginEmail: '',
+              LoginName: '',
+              showForm: true
+          }
       }
+      else {
+          return {
+            LoginEmail: '',
+            LoginName: '',
+            showForm: false
+        }
+      }
+
     },
     methods: {
       addUser() {
-        console.log(this.LoginName, this.LoginEmail)
-        this.$store.dispatch("addUser", { name: this.LoginName, email: this.LoginEmail});
+        this.$store.dispatch("addUser", { name: this.LoginName, email: this.LoginEmail });
+        //set localstorage to false so that the form doesn´t show and set the showForm to false immediately
         this.showForm = false;
+        window.localStorage.setItem('showForm', false);
       }
     }
 }
@@ -72,7 +81,6 @@ export default {
 #login__overlay {
   position: fixed;
   display: flex;
-  /*display: none;*/
   align-self: center;
   align-items: center;
   background: #F3E4E1;
@@ -82,6 +90,7 @@ export default {
   border-radius: 3px;
   z-index: 100;
 }
+
 .login__terms{
  color: rgba(47, 41, 38, 1);
  width: 90%;
@@ -98,7 +107,6 @@ export default {
 
 .loginForm{
   display: flex;
-  align-items: center;
   flex-direction: column;
   width: 310px;
   height: 48px;
@@ -108,7 +116,6 @@ export default {
 
 .login__inputField {
   width: 100%;
-  height:48px;
   background: transparent;
   border-radius: 6px;
   padding: 15px; 
@@ -120,44 +127,48 @@ export default {
 }
 
 p {
-width: 100%;
-color: rgba(47, 41, 38, 1);
-font-family: "Work Sans", sans-serif;
-font-size: 12px;
-padding-top: 10px;
-padding-bottom: 5px;
-
+  width: 100%;
+  color: rgba(47, 41, 38, 1);
+  font-family: "Work Sans", sans-serif;
+  font-size: 12px;
+  padding-top: 10px;
+  padding-bottom: 5px;
 }
-H3{
+
+h3 {
   font-family: "Work Sans", sans-serif;
   font-size: 16px;
   font-weight: 400;
   margin-top: 10px;
 }
+
 .login__GDPR {
-margin-top: 1.5rem;
-background: transparent;
-align-self: flex-start;
+  background: transparent;
 }
 
 .label__GDPR{
   font-family: "Work Sans", sans-serif;
   color: rgba(47, 41, 38, 1);
   font-size: 12px;
-  align-self: flex-start;
-}
-.btn__login {
-    background: #2F2926;
-    font-family: 'PT Serif', serif;
-    font-size: 1.3em;
-    color: #fff;
-    padding: 0.7rem 3rem;
-    border-radius: 3rem;
-    align-self: center;
-    font-weight: 700;
+  margin-left: 0.5em;
 }
 
-/*.login__GDPR:after {
-  background-color:  #0E927D;
-}*/
+.btn__login {
+  background: #2F2926;
+  font-family: 'PT Serif', serif;
+  font-size: 1.5em;
+  color: #fff;
+  padding: 0.7rem 5rem;
+  border-radius: 3rem;
+  align-self: center;
+  font-weight: 700;
+}
+
+.gdpr {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+  padding: 1em 0 3em;
+}
 </style>

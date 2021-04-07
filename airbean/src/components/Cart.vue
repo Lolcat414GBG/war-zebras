@@ -7,7 +7,6 @@
                 <div class="item" v-for="(item, index) in noDuplicatesCart" v-bind:key="index">
                     <div class="item-info">
                         <h3>{{ item.title }}</h3>
-                        <!--<p>{{ item.price*IDs[item.id] }} kr</p>-->
                         <p>{{ item.price }} kr</p>
                     </div>
                     <div class="dots"></div>
@@ -82,7 +81,7 @@ export default {
 }
 </script>
 
-<style>
+<style strict>
 
 .cart-container {
     display: flex;

@@ -1,13 +1,5 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Landing</router-link> |
-      <router-link to="/cart">Cart</router-link> |
-      <router-link to="/menu">Menu</router-link> |
-      <router-link to="/status">Status</router-link> |
-      <router-link to="/profile">Profile</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
     <router-view />
   </div>
 </template>
@@ -27,23 +19,12 @@
   text-align: center;
   color: #2F2926;
   min-height: 667px;
-  max-height: auto;
   width: 375px;
   display: flex;
   flex-direction: column;
   margin: 0 auto;
   background-color: #f3e4e1;
   height: 100vh;
-}
-#nav {
-  padding: 30px;
-  display: none;
-}
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-#nav a.router-link-exact-active {
-  color: #42b983;
+  overflow: scroll;
 }
 </style>

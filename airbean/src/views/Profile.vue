@@ -4,19 +4,29 @@
   <Header/>
   <section class="info__profile">
     <div class="img__profile"></div>
-    <h1>Sixten KaffeLövér</h1>
-    <p>Sixten.kaffelover@zocom.se</p>
+    <h1>{{ name }}</h1>
+    <p class="email">{{ email }}</p>
   </section>
 
   <section class="list__orderhistory">
 
     <h2>Orderhistorik</h2>
-   <ul  v-for="order in orders" :key="order.id"> 
-      <li>
-
+   <ul class="order-container"> 
+      <li v-for="(order, index) in orders" :key="index">
+        <div class="left">
+          <p class="order-number">#{{ order.orderNumber }}</p>
+          <p class="bottom-text">total ordersumma</p></div>
+        <div class="right">
+          <p class="order-date">{{ order.date }}</p>
+          <p class="order-total bottom-text">{{ order.total }} kr</p>
+        </div>
       </li>
     </ul>
-    <h5>Totalt spenderat</h5>
+    <hr>
+    <div class="total-spent">
+      <h5>Totalt spenderat</h5>
+      <p>{{ total }} kr</p>
+    </div>
   </section>
     <ProfileForm/>
 </main>
@@ -25,18 +35,39 @@
 <script>
 import Header from "../components/Header";
 import ProfileForm from "../components/ProfileForm.vue"
-import orders from "../assets/orderlistdummie.json"
 
 export default {
-components: {
-  Header,
-  ProfileForm
-}, 
-computed: {
-  order() {
-    return orders.orders;
-  }
-}
+    components: {
+        Header,
+        ProfileForm
+    },
+    data() {
+      return {
+        total: 0
+      }
+    },
+    computed: {
+        orders() {
+            return this.$store.state.orderHistory
+        },
+        name() {
+            return this.$store.state.name
+        },
+        email() {
+            return this.$store.state.email
+        }
+    },
+    created() {
+        this.countTotal();
+    },
+    methods: {
+      //Loop through the array of orders and set total amount
+      countTotal() {
+        for(let index in this.orders) {
+                this.total += this.orders[index].total;
+            }
+      }
+    }
 }
 </script>
 
@@ -53,7 +84,7 @@ main {
 }
 
 .info__profile{
-  height: 40%;
+  height: 45%;
   width: 100%;
   align-self: flex-start;
   justify-content: center;
@@ -66,14 +97,66 @@ main {
    width: 100%;
 }
 
-.list__orderhistory{
+.list__orderhistory {
+  padding: 0 2rem;
   text-align: left;
-  margin-left: 30px;
+}
+.list__orderhistory.right {
+  text-align: right;
 }
 
-h5{
-font-family: Work Sans;
+h5 {
+  font-family: 'Work Sans', sans-serif;
+  font-weight: 700;
 }
-
-
+.email {
+  font-family: 'Work Sans', sans-serif;
+  color: rgba(255, 255, 255, 0.700);
+}
+.order-container, .total-spent {
+    font-family: 'Work Sans', sans-serif;
+    font-size: 0.9em;
+    font-weight: normal;
+    padding-bottom: 0.7rem;
+    color: rgba(255, 255, 255, 0.700);
+}
+.order-container li {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.200);
+  margin-top: 0.7rem;
+}
+.order-container li:last-child {
+  border-bottom: none;
+}
+.bottom-text {
+  margin-bottom: 0.7rem;
+  color: rgba(255, 255, 255, 0.500);
+}
+.order-total {
+    text-align: right;
+}
+.right {
+  text-align: right;
+}
+.order-number, .total-spent {
+    font-weight: 700;
+    font-size: 1em;
+}
+.total-spent {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-top: 0.7em;
+}
+/**
+<ul class="order-container"> 
+      <li v-for="(order, index) in orders" :key="index">
+        <div class="left">
+          <p class="order-number">#{{ order.orderNumber }}</p>
+          <p class="total">total ordersumma</p></div>
+        <div class="right">
+          <p class="order-date">{{ order.date }}</p>
+          <p class="total">{{ order.total }} kr</p>
+        </div>
+      </li>
+    </ul> */
 </style>
