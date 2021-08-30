@@ -1,111 +1,117 @@
 <template>
-<main id="login__overlay" v-show="showForm">
-  <section class="login__terms">
-    <div class="logo__airbean"></div>
-    <h1>Välkommen till AirBean-familjen!</h1>
-    <h3>Genom att skapa ett konto nedan kan du spara och se din orderhistorik.</h3>
+  <main id="login__overlay" v-show="showForm">
+    <section class="login__terms">
+      <div class="logo__airbean"></div>
+      <h1>Välkommen till AirBean-familjen!</h1>
+      <h3>
+        Genom att skapa ett konto nedan kan du spara och se din orderhistorik.
+      </h3>
     </section>
 
     <section>
-        <form action="" class="loginForm" @submit.prevent="addUser">
-            <p>Namn</p>
-            <input
-            class="login__inputField" 
-            type="text"
-            v-model="LoginName"
-            name="LoginName"
-            placeholder="Sixten Kaffelövér"
-            required />
+      <form action="" class="loginForm" @submit.prevent="addUser">
+        <p>Namn</p>
+        <input
+          class="login__inputField"
+          type="text"
+          v-model="LoginName"
+          name="LoginName"
+          placeholder="Sixten Kaffelövér"
+          required
+        />
 
-            <p>Epost</p>
-            <input
-            class="login__inputField" 
-            type="text"
-            v-model="LoginEmail"
-            name="LoginEmail"
-            placeholder="sixten.kaffelover@zocom.se"
-            required />
+        <p>Epost</p>
+        <input
+          class="login__inputField"
+          type="text"
+          v-model="LoginEmail"
+          name="LoginEmail"
+          placeholder="sixten.kaffelover@zocom.se"
+          required
+        />
 
-            <div class="gdpr">
-              <input
-                id="btn__login"
-                class="login__GDPR" 
-                type="radio"
-                value="GDPR"
-                name="GDPR"
-                required />
-                <label class="label__GDPR" for="GDPR">GDPR Ok!</label>
-            </div>
-          <button class="btn__login" type="submit">Logga in</button>
-        </form>
+        <div class="gdpr">
+          <input
+            id="btn__login"
+            class="login__GDPR"
+            type="radio"
+            value="GDPR"
+            name="GDPR"
+            required
+          />
+          <label class="label__GDPR" for="GDPR">GDPR Ok!</label>
+        </div>
+        <button class="btn__login" type="submit">Logga in</button>
+      </form>
     </section>
-</main>
+  </main>
 </template>
 
 <script>
 export default {
-    data() {
-      //check if user is registered
-      const bol = window.localStorage.getItem('showForm');
-      if(bol === null) {
-          return {
-              LoginEmail: '',
-              LoginName: '',
-              showForm: true
-          }
-      }
-      else {
-          return {
-            LoginEmail: '',
-            LoginName: '',
-            showForm: false
-        }
-      }
-
-    },
-    methods: {
-      addUser() {
-        this.$store.dispatch("addUser", { name: this.LoginName, email: this.LoginEmail });
-        //set localstorage to false so that the form doesn´t show and set the showForm to false immediately
-        this.showForm = false;
-        window.localStorage.setItem('showForm', false);
-      }
+  data() {
+    //check if user is registered
+    const bol = window.localStorage.getItem('showForm');
+    if (bol === null) {
+      return {
+        LoginEmail: '',
+        LoginName: '',
+        showForm: true,
+      };
+    } else {
+      return {
+        LoginEmail: '',
+        LoginName: '',
+        showForm: false,
+      };
     }
-}
-
+  },
+  methods: {
+    addUser() {
+      this.$store.dispatch('addUser', {
+        name: this.LoginName,
+        email: this.LoginEmail,
+      });
+      //set localstorage to false so that the form doesn´t show and set the showForm to false immediately
+      this.showForm = false;
+      window.localStorage.setItem('showForm', false);
+    },
+  },
+};
 </script>
 
 <style scoped>
-@import url("https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@1,200&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@1,200&display=swap');
 
 #login__overlay {
   position: fixed;
   display: flex;
   align-self: center;
   align-items: center;
-  background: #F3E4E1;
+  background: #f3e4e1;
   width: 90%;
   box-shadow: rgba(0, 0, 0, 0.6);
   margin-top: 5rem;
   border-radius: 3px;
   z-index: 100;
+  height: 85%;
 }
 
-.login__terms{
- color: rgba(47, 41, 38, 1);
- width: 90%;
- height: 35%;
+.login__terms {
+  color: rgba(47, 41, 38, 1);
+  width: 90%;
+  height: 35%;
 }
 
-.logo__airbean{
-  background: url('../assets/logoAirbean.svg') center  no-repeat;
-  background-size: 15%;
-  height: 70px;
+.logo__airbean {
+  background: url(/img/logoAirbean.66d6b636.svg) center no-repeat;
+  background-size: 10%;
+  height: 55px;
   width: 100%;
   margin-top: 10px;
 }
 
-.loginForm{
+.loginForm {
   display: flex;
   flex-direction: column;
   width: 310px;
@@ -118,25 +124,24 @@ export default {
   width: 100%;
   background: transparent;
   border-radius: 6px;
-  padding: 15px; 
+  padding: 15px;
   color: rgba(47, 41, 38, 1);
   font-size: 16px;
   font-family: Work Sans;
-  border:1px solid #2F2926;
-  
+  border: 1px solid #2f2926;
 }
 
 p {
   width: 100%;
   color: rgba(47, 41, 38, 1);
-  font-family: "Work Sans", sans-serif;
+  font-family: 'Work Sans', sans-serif;
   font-size: 12px;
   padding-top: 10px;
   padding-bottom: 5px;
 }
 
 h3 {
-  font-family: "Work Sans", sans-serif;
+  font-family: 'Work Sans', sans-serif;
   font-size: 16px;
   font-weight: 400;
   margin-top: 10px;
@@ -146,15 +151,15 @@ h3 {
   background: transparent;
 }
 
-.label__GDPR{
-  font-family: "Work Sans", sans-serif;
+.label__GDPR {
+  font-family: 'Work Sans', sans-serif;
   color: rgba(47, 41, 38, 1);
   font-size: 12px;
   margin-left: 0.5em;
 }
 
 .btn__login {
-  background: #2F2926;
+  background: #2f2926;
   font-family: 'PT Serif', serif;
   font-size: 1.5em;
   color: #fff;
@@ -170,5 +175,31 @@ h3 {
   justify-content: left;
   align-items: center;
   padding: 1em 0 3em;
+}
+input[type='radio']:checked:after {
+  width: 11px;
+  height: 11px;
+  border-radius: 11px;
+  top: -19px;
+  left: 0px;
+  position: relative;
+  background-color: transparent;
+  content: '';
+  display: inline-block;
+  visibility: visible;
+  border: 1px solid white;
+}
+input[type='radio']:checked:before {
+  width: 13px;
+  height: 13px;
+  border-radius: 13px;
+  top: -2px;
+  left: -1px;
+  position: relative;
+  background-color: #0e927d;
+  content: '';
+  display: inline-block;
+  visibility: visible;
+  border: 1px solid #2f2926;
 }
 </style>
